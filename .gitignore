@@ -114,6 +114,7 @@ venv.bak/
 *.png
 *.jpg
 *.jpeg
+!docs/*.png
 !docs/screenshots/*.png
 !docs/results/*.png
 confusion_matrix.png
