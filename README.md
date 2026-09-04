@@ -2,12 +2,13 @@
 
 **Research Project | Safe Edge AI, Statistical Risk Control & Efficient Embedded Computer Vision**
 
+[![CI](https://github.com/yagneshkumarkoduru/Edge-Food-Vision-ResNet50/actions/workflows/ci.yml/badge.svg)](https://github.com/yagneshkumarkoduru/Edge-Food-Vision-ResNet50/actions)
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Conformal](https://img.shields.io/badge/risk%20control-Split--Conformal%20%7C%20C--TTA%20(95%25)-brightgreen.svg)](docs/paper/RESEARCH_PAPER.md)
 [![Paper](https://img.shields.io/badge/paper-IEEE%20TNNLS%20Draft-purple.svg)](docs/paper/RESEARCH_PAPER.md)
 [![Compression](https://img.shields.io/badge/compression-PAQ%20INT8%20(87.5%25%20cut)-orange.svg)](docs/CONFORMAL_RISK_AND_MARTINGALE_PROOFS.md)
 [![Hardware](https://img.shields.io/badge/hardware-ONNX%20%7C%20Edge%20CPU%2FNPU-red.svg)](docs/IMPLEMENTATION_VERSIONS.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > 📄 **Research Paper Manuscript:** Read the full IEEE Transactions on Neural Networks and Learning Systems manuscript: [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Edge_Vision_Conformal_Risk_TNNLS.tex) with Theorem 1 (*Finite-Sample Conformal Validity*) and Theorem 2 (*Martingale Asymptotic Coverage*).  
 > 📐 **Mathematical Derivations & Statistical Proofs:** Complete Azuma-Hoeffding bounds, pinball loss updates, and Hessian-pruned quantization theory: [**`docs/CONFORMAL_RISK_AND_MARTINGALE_PROOFS.md`**](docs/CONFORMAL_RISK_AND_MARTINGALE_PROOFS.md).  

@@ -1,25 +1,17 @@
 cff-version: 1.2.0
-title: "Deep Transfer Learning and Edge Optimization for Fine-Grained Food Recognition Using ResNet-50"
-message: "If you reference or use this software in your research, please cite it as below."
+message: "If you use this software or research architecture in your work, please cite it as below."
+title: "Edge-Food-Vision-ResNet50: Online Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Vision"
 authors:
   - family-names: "Koduru"
     given-names: "Yagnesh Kumar"
-    affiliation: "Independent Researcher"
-    email: "yagneshkumar@esthien.com"
-date-released: 2025-12-04
-version: 2.0.0
-repository-code: "https://github.com/yagneshkumarkoduru/Food-Classification-Using-ResNet-50"
-url: "https://github.com/yagneshkumarkoduru/Food-Classification-Using-ResNet-50"
-abstract: "End-to-end deep transfer learning and post-training INT8 quantization framework for fine-grained food recognition based on ResNet-50. Achieves 92.83% test accuracy across 10 balanced food classes with 3.2x CPU inference speedup."
-keywords:
-  - "deep-learning"
-  - "food-classification"
-  - "computer-vision"
-  - "resnet50"
-  - "transfer-learning"
-  - "pytorch"
-  - "model-quantization"
-  - "int8"
-  - "explainable-ai"
-  - "grad-cam"
+    affiliation: "Esthien Labs"
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+date-released: 2026-09-04
+repository-code: "https://github.com/yagneshkumarkoduru/Edge-Food-Vision-ResNet50"
 license: "MIT"
+keywords:
+  - "conformal prediction"
+  - "test-time adaptation"
+  - "dynamic early-exit"
+  - "int8 quantization"
+  - "edge ai"
