@@ -5,8 +5,11 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/framework-PyTorch%20%7C%20TorchVision-ee4c2c.svg)](https://pytorch.org/)
 [![Model](https://img.shields.io/badge/backbone-ResNet--50%20(ImageNet--1k)-brightgreen.svg)]()
+[![Paper](https://img.shields.io/badge/paper-IEEE%20TNNLS%20Draft-purple.svg)](docs/paper/RESEARCH_PAPER.md)
 [![Quantization](https://img.shields.io/badge/edge-INT8%20Quantization%20(3.2x%20speedup)-orange.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> 📄 **Research Paper Available:** Read the full IEEE Transactions on Neural Networks and Learning Systems manuscript: [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Edge_Vision_Conformal_Risk_TNNLS.tex) with Theorem 1 (*Non-Exchangeable Martingale Coverage*) and dynamic early-exit derivations.
 
 ---
 
