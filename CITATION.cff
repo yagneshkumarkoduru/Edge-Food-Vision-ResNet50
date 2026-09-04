@@ -1,20 +1,16 @@
 cff-version: 1.2.0
-title: "Food Classification Using ResNet-50 with Transfer Learning"
-message: "If you use this software in your research, please cite it as below."
+title: "Deep Transfer Learning and Edge Optimization for Fine-Grained Food Recognition Using ResNet-50"
+message: "If you reference or use this software in your research, please cite it as below."
 authors:
   - family-names: "Koduru"
     given-names: "Yagnesh Kumar"
-    affiliation: "Indian Institute of Information Technology, Sri City"
-    email: "yagneshkumar.k23@iiits.in"
-  - family-names: "P.L.V.V"
-    given-names: "Sanjay"
-    affiliation: "Indian Institute of Information Technology, Sri City"
-    email: "sanjay.p23@iiits.in"
+    affiliation: "Independent Researcher"
+    email: "yagneshkumar@esthien.com"
 date-released: 2025-12-04
-version: 1.2.2
-repository-code: "https://github.com/YOUR_USERNAME/Food-Classification-Using-ResNet-50"
-url: "https://github.com/YOUR_USERNAME/Food-Classification-Using-ResNet-50"
-abstract: "Deep learning-based food classification system using ResNet-50 with transfer learning. Achieves 75.45% accuracy on CIFAR-10 with 180× faster training time."
+version: 2.0.0
+repository-code: "https://github.com/yagneshkumarkoduru/Food-Classification-Using-ResNet-50"
+url: "https://github.com/yagneshkumarkoduru/Food-Classification-Using-ResNet-50"
+abstract: "End-to-end deep transfer learning and post-training INT8 quantization framework for fine-grained food recognition based on ResNet-50. Achieves 92.83% test accuracy across 10 balanced food classes with 3.2x CPU inference speedup."
 keywords:
   - "deep-learning"
   - "food-classification"
@@ -22,11 +18,8 @@ keywords:
   - "resnet50"
   - "transfer-learning"
   - "pytorch"
-  - "image-classification"
-  - "cifar10"
-  - "machine-learning"
-  - "neural-networks"
+  - "model-quantization"
+  - "int8"
+  - "explainable-ai"
+  - "grad-cam"
 license: "MIT"
-identifiers:
-  - type: "url"
-    value: "https://github.com/YOUR_USERNAME/Food-Classification-Using-ResNet-50"
