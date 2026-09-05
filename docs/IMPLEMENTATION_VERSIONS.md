@@ -32,7 +32,8 @@ Edge-Food-Vision-ResNet50/
 │   │   └── pruning_aware_quantization.py        # PAQ INT8 benchmark generating Pareto curves
 │   └── v3_dynamic_exit_test_time_adaptation/
 │       ├── dynamic_early_exit_resnet50.py       # Entropy-gated early exits saving 49.8% FLOPs
-│       └── online_conformal_tta_tracker.py      # Martingale-bounded online test-time adaptation
+│       ├── online_conformal_tta_tracker.py      # Martingale-bounded online test-time adaptation
+│       └── dynamic_exit_benchmark.py            # Tier 3 dynamic exit & C-TTA benchmark runner
 ```
 
 ---
@@ -49,7 +50,7 @@ python -m implementations.v1_edge_device_runtime.embedded_camera_inference_runne
 python -m implementations.v2_conformal_risk_calibration.pruning_aware_quantization
 ```
 
-### 3.3 Run Tier 3 Dynamic Early Exit & C-TTA Stream Tracker
+### 3.3 Run Tier 3 Dynamic Early Exit & C-TTA Benchmark
 ```bash
-python -m implementations.v3_dynamic_exit_test_time_adaptation.online_conformal_tta_tracker
+python -m implementations.v3_dynamic_exit_test_time_adaptation.dynamic_exit_benchmark
 ```

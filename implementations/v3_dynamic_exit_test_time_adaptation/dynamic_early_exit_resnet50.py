@@ -53,3 +53,9 @@ class DynamicEarlyExitNetwork:
             "flop_fraction": 1.0,
             "saved_flops_pct": 0.0
         }
+
+
+if __name__ == "__main__":
+    net = DynamicEarlyExitNetwork()
+    res = net.infer_with_early_exit(np.zeros(2048))
+    print(f"[OK] Dynamic Early Exit Inference: Exit={res['exit_taken']}, Saved FLOPs={res['saved_flops_pct']}%")
