@@ -1,6 +1,6 @@
 """
 Grad-CAM (Gradient-weighted Class Activation Mapping) for ResNet-50
-Author: Yagnesh Kumar Koduru
+Author: Koduru Yagnesh Kumar
 Repository: Food-Classification-Using-ResNet-50
 Domain: Explainable AI (XAI), Computer Vision, Edge Intelligence
 

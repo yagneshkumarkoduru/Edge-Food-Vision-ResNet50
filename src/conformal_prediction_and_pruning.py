@@ -1,6 +1,6 @@
 """
 Split-Conformal Risk Control & Pruning-Aware INT8 Quantization Benchmark
-Author: Yagnesh Kumar Koduru
+Author: Koduru Yagnesh Kumar
 Repository: Edge-Food-Vision-ResNet50
 Domain: Trustworthy Machine Learning, Edge AI, Uncertainty Quantification
 """
@@ -143,7 +143,7 @@ class PruningQuantizationParetoEngine:
 def run_conformal_pruning_benchmark():
     print("=" * 80)
     print("CONFORMAL PREDICTION & PRUNING-AWARE QUANTIZATION BENCHMARK")
-    print("Author: Yagnesh Kumar Koduru")
+    print("Author: Koduru Yagnesh Kumar")
     print("=" * 80)
 
     engine = ConformalPredictionEngine()

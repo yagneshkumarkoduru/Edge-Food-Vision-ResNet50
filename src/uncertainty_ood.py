@@ -1,6 +1,6 @@
 """
 Uncertainty Estimation, Temperature Scaling & Out-of-Distribution (OOD) Calibration
-Author: Yagnesh Kumar Koduru
+Author: Koduru Yagnesh Kumar
 Repository: Food-Classification-Using-ResNet-50
 Domain: Bayesian Deep Learning, Safe Edge AI, Trustworthy Computer Vision
 
@@ -101,7 +101,7 @@ class UncertaintyEstimator:
 def run_uncertainty_study():
     print("=" * 80)
     print("BAYESIAN MC-DROPOUT UNCERTAINTY ESTIMATION & CALIBRATION BENCHMARK")
-    print("Author: Yagnesh Kumar Koduru")
+    print("Author: Koduru Yagnesh Kumar")
     print("=" * 80)
 
     model = CalibratedMCDropoutResNet50(num_classes=10, p_drop=0.25)

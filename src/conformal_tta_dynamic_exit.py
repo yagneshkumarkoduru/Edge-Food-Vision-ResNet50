@@ -5,8 +5,8 @@ conformal_tta_dynamic_exit.py
 Online Conformal Test-Time Adaptation (C-TTA) & Dynamic Early-Exit
 with Provable Coverage Guarantees for Safe Edge Deep Learning.
 
-Author: Yagnesh Kumar Koduru
-Affiliation: Researcher | Esthien Labs
+Author: Koduru Yagnesh Kumar
+Affiliation: Independent Researcher
 """
 
 import os

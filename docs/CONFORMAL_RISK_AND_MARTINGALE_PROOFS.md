@@ -1,7 +1,7 @@
 # Conformal Risk Control, Martingale Concentration & Quantization Theory
 
 **Edge-Food-Vision-ResNet50: Trustworthy Edge Deep Learning & Risk Control Series**  
-*Esthien Labs Technical Report | Mathematical Statistics & Embedded AI*
+*Independent Research Technical Report | Mathematical Statistics & Embedded AI*
 
 ---
 

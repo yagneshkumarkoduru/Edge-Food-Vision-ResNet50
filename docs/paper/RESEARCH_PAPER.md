@@ -1,8 +1,8 @@
 # Distribution-Free Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Vision
 
-**Yagnesh Kumar Koduru**  
-*Researcher, Esthien Labs*  
-*Email: yagneshkumar@esthien.com*
+**Koduru Yagnesh Kumar**  
+*Independent Researcher*  
+*Email: yagneshkumarkoduru@gmail.com*
 
 ---
 

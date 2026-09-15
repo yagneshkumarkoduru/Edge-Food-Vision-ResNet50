@@ -1,6 +1,6 @@
 """
 Edge Optimization & INT8 Model Quantization for ResNet-50
-Author: Yagnesh Kumar Koduru
+Author: Koduru Yagnesh Kumar
 Repository: Food-Classification-Using-ResNet-50
 Domain: Efficient Deep Learning, Edge AI, Model Compression
 
@@ -84,7 +84,7 @@ class EdgeQuantizer:
 def run_quantization_benchmark():
     print("=" * 75)
     print("RESNET-50 EDGE INT8 QUANTIZATION & LATENCY BENCHMARK")
-    print("Author: Yagnesh Kumar Koduru")
+    print("Author: Koduru Yagnesh Kumar")
     print("=" * 75)
 
     # Initialize ResNet-50
