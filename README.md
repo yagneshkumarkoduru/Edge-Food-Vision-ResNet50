@@ -10,7 +10,7 @@
 [![Hardware](https://img.shields.io/badge/hardware-ONNX%20%7C%20Edge%20CPU%2FNPU-red.svg)](docs/IMPLEMENTATION_VERSIONS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> 📄 **Research Paper Manuscript:** Read the full IEEE Transactions on Neural Networks and Learning Systems manuscript: [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Edge_Vision_Conformal_Risk_TNNLS.tex) with Theorem 1 (*Finite-Sample Conformal Validity*) and Theorem 2 (*Martingale Asymptotic Coverage*).  
+> 📄 **Research Paper Manuscript:** Read the full research manuscript draft (target venue: IEEE Transactions on Neural Networks and Learning Systems): [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Edge_Vision_Conformal_Risk_TNNLS.tex) with Theorem 1 (*Finite-Sample Conformal Validity*) and Theorem 2 (*Martingale Asymptotic Coverage*).  
 > 📐 **Mathematical Derivations & Statistical Proofs:** Complete Azuma-Hoeffding bounds, pinball loss updates, and Hessian-pruned quantization theory: [**`docs/CONFORMAL_RISK_AND_MARTINGALE_PROOFS.md`**](docs/CONFORMAL_RISK_AND_MARTINGALE_PROOFS.md).  
 > ⚙️ **Three Implementation Tiers:** Full architecture comparison and edge pipeline for V1, V2, and V3: [**`docs/IMPLEMENTATION_VERSIONS.md`**](docs/IMPLEMENTATION_VERSIONS.md).
 
@@ -111,13 +111,11 @@ python -m implementations.v3_dynamic_exit_test_time_adaptation.online_conformal_
 ## 5. Citation
 
 ```bibtex
-@article{koduru2026conformal,
-  author    = {Koduru, Yagnesh Kumar},
-  title     = {Online Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Deep Learning},
-  journal   = {IEEE Transactions on Neural Networks and Learning Systems},
-  year      = {2026},
-  volume    = {37},
-  number    = {6},
-  pages     = {2890--2904}
+@misc{koduru2026conformal,
+  author = {Koduru, Yagnesh Kumar},
+  title  = {Online Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Deep Learning},
+  year   = {2026},
+  note   = {Research manuscript draft; not peer reviewed},
+  url    = {https://github.com/yagneshkumarkoduru/Edge-Food-Vision-ResNet50}
 }
 ```

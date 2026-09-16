@@ -90,13 +90,11 @@ Benchmarking across a $1000$-sample test stream undergoing synthetic covariate d
 
 ## Citation
 ```bibtex
-@article{koduru2026edge,
-  author    = {Koduru, Yagnesh Kumar},
-  title     = {Distribution-Free Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Vision},
-  journal   = {IEEE Transactions on Neural Networks and Learning Systems},
-  year      = {2026},
-  volume    = {37},
-  number    = {6},
-  pages     = {4210--4223}
+@misc{koduru2026edge,
+  author = {Koduru, Yagnesh Kumar},
+  title  = {Distribution-Free Conformal Test-Time Adaptation and Dynamic Early-Exit Networks for Safe Edge Vision},
+  year   = {2026},
+  note   = {Research manuscript draft; not peer reviewed},
+  url    = {https://github.com/yagneshkumarkoduru/Edge-Food-Vision-ResNet50}
 }
 ```
