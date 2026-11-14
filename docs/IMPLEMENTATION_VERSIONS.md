@@ -14,7 +14,7 @@
 | **Compression Ratio** | 4.0x (Symmetric INT8) | **8.0x (Pruned-Aware INT8)** | 8.0x INT8 + Dynamic Exit |
 | **FLOP Compute Reduction**| 0% (Full backbone) | 50% (Channel pruned) | **49.8% additional reduction** |
 | **Safety Assurance** | Softmax heuristic | **Finite-sample 95% coverage** | **Online Martingale 94.5% under drift** |
-| **Latency Speedup** | 3.19x vs FP32 | 4.71x vs FP32 | **Up to 7.2x on canonical inputs** |
+| **Latency Speedup** | 3.19x vs FP32 (MODEL) | 4.71x vs FP32 (MODEL) | **Up to 7.2x on canonical inputs (MODEL)** |
 | **Memory Footprint** | 24.5 MB | **12.2 MB** | 12.8 MB (with early probes) |
 
 ---

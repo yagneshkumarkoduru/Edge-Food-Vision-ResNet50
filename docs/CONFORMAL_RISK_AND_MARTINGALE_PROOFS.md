@@ -61,4 +61,4 @@ Second-order Taylor expansion of task loss $\mathcal{L}$ under perturbation $\De
 
 $$\Delta \mathcal{L} \approx g^T \Delta w + \frac{1}{2} \Delta w^T H \Delta w$$
 
-Zeroing out small-magnitude weights with minimal diagonal Hessian curvature ($H_{ii} = \frac{\partial^2 \mathcal{L}}{\partial w_i^2}$) enables structured 50% channel pruning followed by INT8 quantization, achieving an **$87.5\%$ memory compression** and **$4.71\times$ edge speedup**.
+Zeroing out small-magnitude weights with minimal diagonal Hessian curvature ($H_{ii} = \frac{\partial^2 \mathcal{L}}{\partial w_i^2}$) enables structured 50% channel pruning followed by INT8 quantization. The stated **$87.5\%$ memory compression** and **$4.71\times$ edge speedup** are MODEL targets, not measurements. Measured classifier-head INT8 dynamic quantization (Food-101 campaign, 2026-11-14): head size $-74.71\%$, top-1 $-0.08$ pp, CPU latency $0.66\times$ on the x86 host, and conformal coverage preserved ($90.37\%$ recalibrated vs 90% target).

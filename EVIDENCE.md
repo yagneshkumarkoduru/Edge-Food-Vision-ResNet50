@@ -1,7 +1,7 @@
 # Evidence Register: Conformal Prediction Engine Validation
 
 **Project:** Edge-Food-Vision-ResNet50
-**Date:** 2026-11-14
+**Date:** 2026-11-14 (Section 7 added: real Food-101 measurement campaign)
 **Scope:** V2 static split-conformal calibration, V3 online C-TTA tracker, dynamic early-exit FLOP model, PAQ compression and latency claims.
 
 Every number below carries one tag:
@@ -151,14 +151,161 @@ Coverage of the suite:
 
 ---
 
-## 6. Bottom line
+## 6. Bottom line (synthetic validation)
 
 The conformal mathematics in the repository is implemented correctly and
 behaves as theory predicts on clean data, and the qualitative paper narrative
 (static calibration collapses under drift; online C-TTA recovers coverage) is
-real and reproducible. None of the four headline quantitative claims
-(94.50% coverage, 49.79% FLOP reduction, 87.5% size reduction, 4.71x speedup)
-is a measured number; all four are hardcoded literals, and the measured C-TTA
-coverage on the validated stream (100%) does not match the claimed 94.50%.
-The published numbers should be re-derived from executed runs before they are
-cited externally.
+real and reproducible on synthetic streams. None of the four headline
+quantitative claims (94.50% coverage, 49.79% FLOP reduction, 87.5% size
+reduction, 4.71x speedup) is a measured number; all four are hardcoded
+literals, and the measured C-TTA coverage on the validated stream (100%) does
+not match the claimed 94.50%. The published numbers should be re-derived from
+executed runs before they are cited externally.
+
+---
+
+## 7. Real Food-101 measurement campaign (2026-11-14) - MEASURED
+
+Harness: `src/measure_food101_conformal.py`. Artifact:
+`results/food101_measured.json` (also at
+`s3://esthien-atlas-eda-969739653654/engineering/edge-food/food101_measured.json`).
+Protocol: frozen torchvision ResNet-50 (IMAGENET1K_V2) backbone, linear
+classifier head fine-tuned head-only on the Food-101 train split
+(deterministic seed 42). Split-conformal calibration on a seeded half of the
+test split (5,050 samples), evaluation on the remaining 20,200. Environment:
+NVIDIA L4, torch 2.12.1+cu130, torchvision 0.27.1, alpha = 0.10 (target
+coverage 90%). Measured head top-1 on Food-101 test: 71.32%.
+
+Every number in this section was produced by executing the harness on real
+Food-101 images; nothing is hardcoded.
+
+### 7.1 Static split-conformal coverage, clean test split - MEASURED
+
+| Quantity | Value |
+|---|---|
+| Target coverage (alpha = 0.10) | 90.00% |
+| Measured coverage | 90.29% |
+| Mean prediction-set size | 2.77 / 101 classes |
+| q_hat | 0.9543 |
+
+Split-conformal calibration meets its marginal coverage guarantee on real
+Food-101 features, within 0.3 points of target.
+
+### 7.2 Static coverage under corruptions (collapse curve) - MEASURED
+
+Coverage of the same static threshold (q_hat = 0.9543) on corrupted eval
+images, three corruptions x three severities:
+
+| Corruption | Severity 1 | Severity 2 | Severity 3 |
+|---|---|---|---|
+| Gaussian noise | 73.18% | 44.50% | 18.79% |
+| Defocus blur | 87.61% | 80.79% | 58.27% |
+| Brightness shift | 88.72% | 79.54% | 39.77% |
+
+Static coverage collapses under corruption on real data, as the paper
+narrative claims. The measured severe-severity figures (18.79% noise,
+39.77% brightness) bracket the published 40.00% literal; the published value
+corresponds to no specific measured corruption here, but the qualitative
+collapse is confirmed on real images.
+
+### 7.3 C-TTA online recovery on the drift stream - MEASURED, CLAIM NOT REPRODUCED
+
+Drift stream: the full eval set at Gaussian-noise severity 1, then 2, then 3
+(60,600 steps of increasing drift). Static coverage on this stream is
+45.49% overall (18.79% in the severe third). The C-TTA tracker was run with
+gamma swept over {0.005, 0.01, 0.02, 0.05}:
+
+| gamma | Overall coverage | Severe-third coverage | Final q_t |
+|---|---|---|---|
+| 0.005 | 27.60% | 7.87% | 0.0505 |
+| 0.01 | 27.57% | 7.87% | 0.0510 |
+| 0.02 | 27.57% | 7.87% | 0.0520 |
+| 0.05 | 27.57% | 7.87% | 0.0550 |
+
+**The published C-TTA recovery claim is not reproduced on real drifted
+features.** The tracker sits at its q_t = 0.05 floor for the entire stream at
+every gamma, realizes 27.60% overall and 7.87% severe-third coverage, and
+underperforms even the static threshold (45.49% / 18.79%). Inspection of
+`OnlineConformalTTATracker.update_online` shows why: the update
+`q_{t+1} = q_t + gamma * (alpha - error_t)` drives q_t DOWN on a miss, which
+under this module's threshold parameterization (prediction set =
+{p : p >= 1 - q_t}) SHRINKS the prediction set in exactly the regime where it
+must grow. On the synthetic stream of Section 3 the tracker appeared to
+recover only because q_t saturated at its 0.99 ceiling and the prediction
+sets ballooned toward all classes; on real Food-101 drift, where the score
+distribution is wider, the same update parks at the floor. The 94.50%
+recovery figure corresponds to no measured behavior of this implementation.
+This is the central negative result of the campaign: the C-TTA update rule as
+implemented is directionally wrong for the module's threshold semantics, and
+the paper's recovery claim requires a corrected update rule before it can be
+cited.
+
+### 7.4 INT8 dynamic quantization - MEASURED; COVERAGE SURVIVES QUANTIZATION
+
+Classifier head quantized with torch.ao.quantization.quantize_dynamic
+(qnnpack engine, qint8 Linear):
+
+| Quantity | FP32 | INT8 | Delta |
+|---|---|---|---|
+| Head size (serialized state_dict) | 0.79 MB | 0.20 MB | -74.71% |
+| Top-1 accuracy | 71.32% | 71.24% | -0.08 pp |
+| CPU latency (full ResNet-50 + head) | 37.50 ms | 56.40 ms | 0.66x (slower) |
+| q_hat (recalibrated) | 0.9543 | 0.9551 | +0.0008 |
+| Static clean coverage (recalibrated) | 90.29% | 90.37% | +0.08 pp |
+| Coverage with FP32 q_hat on INT8 probs | - | 90.23% | -0.06 pp transfer gap |
+
+The headline positive result: **the split-conformal coverage guarantee
+survives INT8 quantization.** Recalibrated on INT8 probabilities, realized
+coverage is 90.37% against a 90% target; even transferring the FP32
+calibration threshold onto INT8 probabilities without recalibration holds
+coverage to within 0.07 points. To our knowledge this is the first published
+measurement of conformal coverage preservation under INT8 quantization on a
+real vision benchmark.
+
+The latency figure is honest: dynamic INT8 quantization of a convolutional
+backbone only quantizes the Linear layers, so the measured CPU latency of the
+full model rises (0.66x). The 4.71x speedup literal is not reproduced; the
+measured size reduction on the classifier head is 74.71%, close to the 75.0%
+literal but measured only on the head, not the full model (full-model
+figures would require static quantization of the conv stack, not run here).
+
+### 7.5 Early-exit probe (layer3 auxiliary head) - MEASURED exit distribution, MODEL FLOP fractions
+
+An auxiliary linear head on layer3 features (1,024-d), fine-tuned the same
+way, reaches 74.30% top-1 standalone (above the 71.32% final head, a real and
+unexpected finding consistent with head-only transfer overfitting less at
+lower depth). Routing samples with predictive entropy below tau to the early
+exit and the rest to the final head, with the analytic ResNet-50 MAC
+structure (layer4 + fc is approximately 36% of MACs; per-stage fractions are
+MODEL assumptions, not profiled):
+
+| tau | Fraction exiting at mid | Combined top-1 | FLOP reduction (MODEL fractions) |
+|---|---|---|---|
+| 0.5 | 46.8% | 73.31% | 16.9% |
+| 1.0 | 61.1% | 74.39% | 22.0% |
+| 1.5 | 73.4% | 75.15% | 26.4% |
+| 2.0 | 85.0% | 75.26% | 30.6% |
+
+Exit distributions and combined accuracies are measured; the FLOP-reduction
+column inherits the analytic per-stage MAC fractions and is tagged MODEL.
+The published 49.79% literal is not reproduced by any measured threshold.
+
+### 7.6 Campaign environment and cost
+
+- Instance: g6.2xlarge spot (NVIDIA L4, 23 GB), us-east-1c, Deep Learning
+  AMI GPU PyTorch 2.12 (Ubuntu 24.04), ami-0b28f7269694dd0a9.
+- Runtime: 2026-11-13 22:41 UTC launch to 2026-11-14 ~01:20 UTC termination
+  (about 2.65 hours including one quantization-backend crash and rerun).
+- Spot price at launch: $0.7156/hr. Estimated compute spend: about $1.90.
+- Instance terminated; artifact in S3 and results/.
+
+### 7.7 What Section 7 changes in the claim audit
+
+| Claim | Verdict after real measurement |
+|---|---|
+| Static collapse under drift | CONFIRMED on real data (18.79% noise s3, 39.77% brightness s3); the 40.00% literal is a stand-in, not a measurement |
+| C-TTA restores 94.50% coverage | NOT REPRODUCED on real data at any gamma; measured recovery is 7.87% severe-third, worse than static. Update rule direction is wrong for this threshold parameterization |
+| Coverage survives INT8 quantization | NEW POSITIVE RESULT, measured: 90.37% recalibrated (target 90%), 90.23% with FP32 q_hat transfer |
+| 87.5% size reduction, 4.71x speedup | NOT REPRODUCED; measured head-only figures are -74.71% size and 0.66x CPU latency (slower). Full-model INT8 requires static conv quantization, not run |
+| 49.79% FLOP reduction | NOT REPRODUCED; measured thresholds give 16.9% to 30.6% with MODEL per-stage fractions |
